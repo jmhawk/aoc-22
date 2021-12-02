@@ -9,17 +9,18 @@
 
 (take 10 commands)
 
-;;explode on space
-;; cast second half to int
-
 (defn part-one
   [commands]
-  (let [grouping (group-by first commands)
-        forward-sum (:forward grouping)]
-    (take 1 grouping)))
+  (let [{:keys [forward up down]} (group-by first commands)
+        forward-sum (reduce (fn [counter entry] (+ counter (last entry))) 0 forward)
+        up-sum (reduce (fn [counter entry] (+ counter (last entry))) 0 up)
+        down-sum (reduce (fn [counter entry] (+ counter (last entry))) 0 down)]
+    (* forward-sum (- down-sum up-sum))))
 
 (part-one commands)
 
+
+(:a [[:a [1 2 3]] [:b [8 9 10]]])
 ;;group by up, down, forward
 ;; sum forward
 ;; 
