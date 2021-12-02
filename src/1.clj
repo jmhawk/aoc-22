@@ -5,6 +5,10 @@
     (map #(Integer/parseInt %) (-> (slurp "resources/1.txt")
                                    str/split-lines)))
 
+(defn verdict 
+    [grouping]
+    (> (last grouping) (first grouping)))
+
 (defn part-1 
     [measurements]
     (let
@@ -23,15 +27,7 @@
 
 (defn part-2
     [measurements]
-    )
-
-(part-1 measurements)
-;; how often is the sum of three in a row greater than the sum of the next three-grouping
-
-;;n0 + n1 + n2
-;;n1 + n2 + n3
-;;n2 + n3 + n4 
-
-;; ;;n0 + n1 + n2 > ;;n1 + n2 + n3?
-
-;; ;;n1 + n2 + n3 > ;;n2 + n3 + n4 ?
+    (->> measurements
+        (partition 4 1)
+        (filter verdict)
+        count))
