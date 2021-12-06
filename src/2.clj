@@ -7,8 +7,6 @@
       (map (fn [dis]
              [(keyword (first dis)) (Integer/parseInt (last dis))]))))
 
-(take 10 commands)
-
 (defn part-one
   [command-coll]
   (let [{:keys [forward up down]} (group-by first command-coll)
