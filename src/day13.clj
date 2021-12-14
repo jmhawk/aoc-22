@@ -84,7 +84,6 @@
         new-coords (map (partial translate-coord at) below-fold)]
     (set (concat new-coords above-fold))))
 
-;;
 
 (deftest part1
   (testing "figuring out fold")
